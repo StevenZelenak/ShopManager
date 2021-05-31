@@ -42,15 +42,15 @@ namespace ShopManager.DataAccess
         //Adds a user
         public void Add(User user)
         {
-            //var sql = @"INSERT INTO [dbo].[Users] ([companyId], [isManager], [isEmployee], [firstName], [lastName], [companyEmail], [username], [password])
-            //OUTPUT inserted.id
-            //VALUES(@companyId, @isManager, isEmployee, @firstName, @lastName, @companyEmail, @username, @password)";
+            var sql = @"INSERT INTO [dbo].[Users] ([companyId], [isManager], [isEmployee], [firstName], [lastName], [companyEmail], [username], [password])
+            OUTPUT inserted.id
+            VALUES(@companyId, @isManager, isEmployee, @firstName, @lastName, @companyEmail, @username, @password)";
 
-            //using var db = new SqlConnection(ConnectionString);
+            using var db = new SqlConnection(ConnectionString);
 
-            //var id = db.ExecuteScalar<int>(sql, user);
+            var id = db.ExecuteScalar<int>(sql, user);
 
-            //user.id = id;
+            user.id = id;
         }
 
         //Removes a user
