@@ -9,7 +9,7 @@ using ShopManager.DataAccess;
 
 namespace ShopManager.Controllers
 {
-    [Route("api/User")]
+    [Route("api/Users")]
     [ApiController]
     public class UsersController : ControllerBase
     {

@@ -11,7 +11,7 @@ namespace ShopManager.DataAccess
 {
     public class UserRepo
     {
-        const string ConnectionString = "Server=localhost;Database=DiaperJungle;Trusted_Connection=True;";
+        const string ConnectionString = "Server=localhost;Database=ShopManager;Trusted_Connection=True;";
 
         //Gets all users
         public List<User> GetAll()
@@ -19,7 +19,7 @@ namespace ShopManager.DataAccess
             using var db = new SqlConnection(ConnectionString);
 
             var sql = @"SELECT *
-                        FROM [User]";
+                        FROM [Users]";
 
             var results = db.Query<User>(sql).ToList();
             return results;
@@ -29,7 +29,7 @@ namespace ShopManager.DataAccess
         public User Get(int id)
         {
             var sql = @"SELECT *
-                        FROM [User]
+                        FROM [Users]
                         WHERE id = @id";
 
             using var db = new SqlConnection(ConnectionString);
@@ -42,15 +42,15 @@ namespace ShopManager.DataAccess
         //Adds a user
         public void Add(User user)
         {
-            var sql = @"INSERT INTO [dbo].[User] ([companyId], [isManager], [isEmployee], [firstName], [lastName], [companyEmail], [username], [password])
-                        OUTPUT inserted.id
-                        VALUES(@companyId, @isManager, isEmployee, @firstName, @lastName, @companyEmail, @username, @password)";
+            //var sql = @"INSERT INTO [dbo].[Users] ([companyId], [isManager], [isEmployee], [firstName], [lastName], [companyEmail], [username], [password])
+            //OUTPUT inserted.id
+            //VALUES(@companyId, @isManager, isEmployee, @firstName, @lastName, @companyEmail, @username, @password)";
 
-            using var db = new SqlConnection(ConnectionString);
+            //using var db = new SqlConnection(ConnectionString);
 
-            var id = db.ExecuteScalar<int>(sql, user);
+            //var id = db.ExecuteScalar<int>(sql, user);
 
-            user.id = id;
+            //user.id = id;
         }
 
         //Removes a user
@@ -59,7 +59,7 @@ namespace ShopManager.DataAccess
             using var db = new SqlConnection(ConnectionString);
 
             var sql = @"DELETE
-                        FROM [User]
+                        FROM [Users]
                         WHERE id = @id";
 
             db.Execute(sql, new { id });
@@ -70,7 +70,7 @@ namespace ShopManager.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"UPDATE [User]
+            var sql = @"UPDATE [Users]
                         SET companyId = @companyId,
                             isManager = @isManager,
 	                        isEmployee = @isEmployee,

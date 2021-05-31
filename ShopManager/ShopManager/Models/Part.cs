@@ -17,7 +17,9 @@ namespace ShopManager.Models
         public double sizeHeight { get; set; }
         public double price { get; set; }
         public int userId { get; set; }
+        public bool isComplete { get; set; }
         public DateTime dateStart { get; set; }
-        public DateTime dateEnd { get; set; }
+        public DateTime dateFinish { get; set; }
+       
     }
 }
