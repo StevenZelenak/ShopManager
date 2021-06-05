@@ -1,12 +1,20 @@
-import React from 'react';
 import './App.scss';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from '../helpers/routes';
+import Navbar from '../components/navbar';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Inside the App</h1>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className='App'>
+        <BrowserRouter>
+          <Navbar logoutEvent={this.logoutEvent}/>
+          <Routes />
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;
