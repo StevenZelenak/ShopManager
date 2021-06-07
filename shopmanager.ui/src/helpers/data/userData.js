@@ -15,4 +15,11 @@ const getSearchedUsers = (searchTerm) => new Promise((resolve, reject) => axios
     resolve(searched);
   }).catch((error) => reject(error)));
 
-export default { getAllUsers, getSearchedUsers };
+const addUser = (data) => new Promise((resolve, reject) => {
+  axios.post(`${userUrl}`, data)
+    .then((response) => {
+      resolve(response.data);
+    }).catch((error) => reject(error));
+});
+
+export default { getAllUsers, getSearchedUsers, addUser };

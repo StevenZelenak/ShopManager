@@ -5,12 +5,16 @@ import Routes from '../helpers/routes';
 import Navbar from '../components/navbar';
 
 class App extends React.Component {
+  state = {
+    user: JSON.parse(window.localStorage.getItem('user')),
+  };
+
   render() {
     return (
       <div className='App'>
         <BrowserRouter>
-          <Navbar logoutEvent={this.logoutEvent}/>
-          <Routes />
+          <Navbar />
+          <Routes user={this.state.user}/>
         </BrowserRouter>
       </div>
     );
