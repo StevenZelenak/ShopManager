@@ -1,6 +1,6 @@
 import React from 'react';
-import ManagerHome from './managerHome';
-import EmployeeHome from './employeeHome';
+import ManagerHome from '../views/managerHome';
+import EmployeeHome from '../views/employeeHome';
 
 class LoginHome extends React.Component {
   state = {

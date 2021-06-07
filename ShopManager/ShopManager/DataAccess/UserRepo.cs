@@ -44,7 +44,7 @@ namespace ShopManager.DataAccess
         {
             var sql = @"INSERT INTO [dbo].[Users] ([companyId], [isManager], [isEmployee], [firstName], [lastName], [companyEmail], [username], [password])
             OUTPUT inserted.id
-            VALUES(@companyId, @isManager, isEmployee, @firstName, @lastName, @companyEmail, @username, @password)";
+            VALUES(@companyId, @isManager, @isEmployee, @firstName, @lastName, @companyEmail, @username, @password)";
 
             using var db = new SqlConnection(ConnectionString);
 
