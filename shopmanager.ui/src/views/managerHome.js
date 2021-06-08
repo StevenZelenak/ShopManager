@@ -24,7 +24,7 @@ class ManagerHome extends React.Component {
             <Link to='/' className='nav-link' href='#'>
               Create Job
             </Link>
-            <Link to='/' className='nav-link' href='#'>
+            <Link to='/view_user' href='#'>
               View Users
             </Link>
             <Link to='/' className='nav-link' href='#'>
