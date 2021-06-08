@@ -84,10 +84,10 @@ class Login extends React.Component {
                 placeholder='Password'
               />
             </Form.Group>
-            <Button variant='primary' type='submit' onClick={this.handleSubmit}>
+            <Button variant='primary' type='' onClick={this.handleSubmit}>
               Login
             </Button>
-            <Button variant='danger' type='submit'>
+            <Button variant='danger' type=''>
               Register
             </Button>
           </Form>
