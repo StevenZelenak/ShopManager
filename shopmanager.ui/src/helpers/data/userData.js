@@ -28,6 +28,32 @@ const addUser = (data) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const getSingleUser = (Id) => new Promise((resolve, reject) => {
+  axios.get(`${userUrl}/${Id}`)
+    .then((response) => {
+      resolve(response.data);
+    })
+    .catch((error) => reject(error));
+});
+
+const updateUser = (data) => new Promise((resolve, reject) => {
+  const objData = data;
+  const newObj = {
+    id: objData.id,
+    companyId: objData.companyId,
+    firstName: objData.firstName,
+    lastName: objData.lastName,
+    username: objData.username,
+    password: objData.password,
+    companyEmail: objData.companyEmail,
+    isManager: objData.isManager,
+    isEmployee: objData.isEmployee
+  };
+  axios.put(`${userUrl}/${data.id}/update`, newObj)
+    .then(resolve)
+    .catch((error) => reject(error));
+});
+
 const deleteUser = (Id) => axios.delete(`${userUrl}/${Id}`);
 
 export default {
@@ -35,5 +61,7 @@ export default {
   getSearchedUsers,
   addUser,
   getAllUsersByCompany,
-  deleteUser
+  deleteUser,
+  getSingleUser,
+  updateUser
 };
