@@ -3,16 +3,16 @@ import { Button } from 'react-bootstrap';
 
 /* eslint-disable react/prop-types */
 
-export default function UserTableRow({ user, removeUser }) {
+export default function UserTableRow({ user, removeUser, changeRouteUpdate }) {
   return (
     <tr>
       <td>{user.firstName}</td>
       <td>{user.lastName}</td>
       <td>
-        <Button>Update</Button>
+        <Button onClick={() => changeRouteUpdate(user.id)}>Update</Button>
       </td>
       <td>
-        <Button>View</Button>
+        <Button variant='info'>View</Button>
       </td>
       <td>
         <Button variant='danger' onClick={() => removeUser(user.id)}>Delete</Button>
