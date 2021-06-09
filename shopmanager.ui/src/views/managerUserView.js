@@ -35,6 +35,11 @@ class ManagerUserView extends React.Component {
     history.push(`/update_user/${id}`);
   };
 
+  changeRouteSingleView = (id) => {
+    const { history } = this.props;
+    history.push(`/single_user/${id}`);
+  };
+
   removeUser = (id) => {
     userData.deleteUser(id).then(() => {
       window.location.reload();
@@ -43,7 +48,7 @@ class ManagerUserView extends React.Component {
 
   render() {
     const { companyUsers } = this.state;
-    const renderAllUserRows = () => companyUsers.map((user) => <UserTableRow id={user.id} key={user.id} user={user} removeUser={this.removeUser} changeRouteUpdate={this.changeRouteUpdate}/>);
+    const renderAllUserRows = () => companyUsers.map((user) => <UserTableRow id={user.id} key={user.id} user={user} removeUser={this.removeUser} changeRouteUpdate={this.changeRouteUpdate} changeRouteSingleView={this.changeRouteSingleView}/>);
     return (
       <>
         <div>
