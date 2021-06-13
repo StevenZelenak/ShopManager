@@ -38,6 +38,21 @@ namespace ShopManager.DataAccess
             return singleJob;
         }
 
+        //Gets jobs by companyId
+        public List<Job> GetByCompanyId(int companyId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"SELECT *
+                        FROM [Jobs]
+                        WHERE companyId = @companyId";
+
+
+            var results = db.Query<Job>(sql, new { companyId = companyId }).ToList();
+
+            return results;
+        }
+
         //Adds a job
         public void Add(Job job)
         {
@@ -45,7 +60,7 @@ namespace ShopManager.DataAccess
         
             var sql = @"INSERT INTO [dbo].[Jobs] ([companyId], [jobName], [customer], [dateRec], [dateDue], [dateFinished], [budget], [isComplete])
             OUTPUT inserted.id
-            VALUES(@companyId, @jobName, customer, @dateRec, @dateDue, @dateFinished, @budget, @isComplete)";
+            VALUES(@companyId, @jobName, @customer, @dateRec, @dateDue, @dateFinished, @budget, @isComplete)";
 
             using var db = new SqlConnection(ConnectionString);
 
