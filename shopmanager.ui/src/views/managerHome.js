@@ -21,13 +21,13 @@ class ManagerHome extends React.Component {
           <Link to='/create_user' href='#'>
               Create User
             </Link>
-            <Link to='/' className='nav-link' href='#'>
+            <Link to='/create_job' href='#'>
               Create Job
             </Link>
             <Link to='/view_user' href='#'>
               View Users
             </Link>
-            <Link to='/' className='nav-link' href='#'>
+            <Link to='/view_jobs' href='#'>
               View Jobs
             </Link>
         </div>

@@ -38,6 +38,18 @@ namespace ShopManager.Controllers
             return Ok(job);
         }
 
+        //GET to /api/Users/{companyId}
+        [HttpGet("company_jobs/{companyId}")]
+        public IActionResult GetAllJobsByCompanyId(int companyId)
+        {
+            var user = _repo.GetByCompanyId(companyId);
+            if (user == null)
+            {
+                return NotFound("These users id does not exist");
+            }
+            return Ok(user);
+        }
+
         //POST to /api/Jobs
         [HttpPost]
         public IActionResult AddAJob(Job job)

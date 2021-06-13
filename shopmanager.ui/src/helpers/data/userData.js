@@ -22,6 +22,7 @@ const getSearchedUsers = (searchTerm) => new Promise((resolve, reject) => axios
   }).catch((error) => reject(error)));
 
 const addUser = (data) => new Promise((resolve, reject) => {
+  console.warn('data', data);
   axios.post(`${userUrl}`, data)
     .then((response) => {
       resolve(response.data);

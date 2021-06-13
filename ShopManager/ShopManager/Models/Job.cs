@@ -11,10 +11,10 @@ namespace ShopManager.Models
         public int companyId { get; set; }
         public string jobName { get; set; }
         public string customer { get; set; }
-        public DateTime dateRec { get; set; }
-        public DateTime dateDue { get; set; }
-        public DateTime dateFinished { get; set; }
-        public double budget { get; set; }
+        public string dateRec { get; set; }
+        public string dateDue { get; set; }
+        public string dateFinished { get; set; }
+        public int budget { get; set; }
         public bool isComplete { get; set; }
     }
 }
