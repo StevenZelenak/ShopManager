@@ -38,6 +38,19 @@ namespace ShopManager.Controllers
             return Ok(part);
         }
 
+        //GET to /api/company_parts/{jobId}
+        [HttpGet("company_parts/{jobId}")]
+        public IActionResult GetAllPartsByJobId(int jobId)
+        {
+            var part = _repo.GetByJobId(jobId);
+            if (part == null)
+            {
+                return NotFound("These users id does not exist");
+            }
+            return Ok(part);
+        }
+
+
         //POST to /api/Parts
         [HttpPost]
         public IActionResult AddAPart(Part part)
@@ -71,9 +84,21 @@ namespace ShopManager.Controllers
             part.userId = partObj.userId;
             part.isComplete = partObj.isComplete;
             part.dateStart = partObj.dateStart;
-            part.dateFinish = partObj.dateFinish;
+            part.dateEnd = partObj.dateEnd;
 
             _repo.Update(part);
+            return NoContent();
+        }
+
+        //PUT to /api/Part/{id}/update
+        [HttpPut("{id}/update_user")]
+        public IActionResult UpdatePartUser(int id, Part partObj)
+        {
+            var part = _repo.Get(id);
+
+            part.userId = partObj.userId;
+
+            _repo.UpdateUserIdPart(part);
             return NoContent();
         }
     }

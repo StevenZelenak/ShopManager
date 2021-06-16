@@ -38,14 +38,29 @@ namespace ShopManager.DataAccess
             return singlePart;
         }
 
+        //Gets jobs by companyId
+        public List<Part> GetByJobId(int jobId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"SELECT *
+                        FROM [Parts]
+                        WHERE jobId = @jobId";
+
+
+            var results = db.Query<Part>(sql, new { jobId = jobId }).ToList();
+
+            return results;
+        }
+
         //Adds a part
         public void Add(Part part)
         {
             Console.WriteLine(part);
 
-            var sql = @"INSERT INTO [dbo].[Parts] ([jobId], [partName], [materialType], [materialFinish], [sizeLength], [sizeWidth], [sizeHeight], [price], [userId], [isComplete], [dateStart], [dateFinish])
+            var sql = @"INSERT INTO [dbo].[Parts] ([jobId], [partName], [materialType], [MaterialFinish], [sizeLength], [sizeWidth], [sizeHeight], [price], [isComplete], [dateStart], [dateEnd])
             OUTPUT inserted.id
-            VALUES(@jobId, @partName, materialType, @materialFinish, @sizeLength, @sizeWidth, @sizeHeight, @price, @userId, @isComplete, @dateStart, @dateFinish)";
+            VALUES(@jobId, @partName, @materialType, @MaterialFinish, @sizeLength, @sizeWidth, @sizeHeight, @price, @isComplete, @dateStart, @dateEnd)";
 
             using var db = new SqlConnection(ConnectionString);
 
@@ -85,6 +100,18 @@ namespace ShopManager.DataAccess
                             isComplete = @isComplete,
                             dateStart = @dateStart,
                             dateFinish = @dateFinish
+                        WHERE id = @id";
+
+            db.Execute(sql, part);
+        }
+
+        //updates a parts userId
+        public void UpdateUserIdPart(Part part)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"UPDATE [Parts]
+                        SET userId = @userId,
                         WHERE id = @id";
 
             db.Execute(sql, part);
