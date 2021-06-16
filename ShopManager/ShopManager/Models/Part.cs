@@ -12,14 +12,14 @@ namespace ShopManager.Models
         public string partName { get; set; }
         public string materialType { get; set; }
         public string MaterialFinish { get; set; }
-        public double sizeLength { get; set; }
-        public double sizeWidth { get; set; }
-        public double sizeHeight { get; set; }
-        public double price { get; set; }
+        public int sizeLength { get; set; }
+        public int sizeWidth { get; set; }
+        public int sizeHeight { get; set; }
+        public int price { get; set; }
         public int userId { get; set; }
         public bool isComplete { get; set; }
-        public DateTime dateStart { get; set; }
-        public DateTime dateFinish { get; set; }
+        public string dateStart { get; set; }
+        public string dateEnd { get; set; }
        
     }
 }
