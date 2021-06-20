@@ -8,16 +8,13 @@ import { Link } from 'react-router-dom';
 
 // pass user as parameter when user auth is setup
 class MyNavbar extends React.Component {
-  state = {
-    isOpen: false,
-  };
-
   logoutEvent = () => {
     localStorage.clear();
     window.location.reload();
   }
 
   render() {
+    console.warn('props', this.props);
     return (
       <div>
         <Navbar color='dark' expand='lg'>
@@ -26,7 +23,7 @@ class MyNavbar extends React.Component {
               Shop Manager
             </Link>
           </NavbarBrand>
-            {localStorage.key('user') && (<Link className='ml-auto' to='/' type='submit' onClick={this.logoutEvent}>Logout</Link>)}
+            {localStorage.getItem('user') && (<Link className='ml-auto' to='/' type='submit' onClick={this.logoutEvent}>Logout</Link>)}
         </Navbar>
       </div>
     );

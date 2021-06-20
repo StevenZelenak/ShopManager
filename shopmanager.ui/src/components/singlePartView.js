@@ -46,8 +46,13 @@ class SinglePartView extends React.Component {
 
   changeRoute = () => {
     const { history } = this.props;
-    history.push('/logged-in');
+    history.push(`/single_job/${this.state.part.jobId}`);
   };
+
+  goBack = () => {
+    const { history } = this.props;
+    history.push(`/single_job/${this.state.part.jobId}`);
+  }
 
   getUserId = (e) => {
     const foundUser = this.state.users.find((user) => parseInt(user.id, 10) === parseInt(e, 10));
@@ -55,8 +60,36 @@ class SinglePartView extends React.Component {
   }
 
   onSubmit = () => {
+    const {
+      jobId,
+      partName,
+      materialType,
+      materialFinish,
+      sizeLength,
+      sizeWidth,
+      sizeHeight,
+      price,
+      isComplete,
+      dateStart,
+      dateFinish
+    } = this.state.part;
+    const newPart = {
+      id: this.state.id,
+      jobId,
+      partName,
+      materialType,
+      materialFinish,
+      sizeLength,
+      sizeWidth,
+      sizeHeight,
+      price,
+      userId: this.state.userId,
+      isComplete,
+      dateStart,
+      dateFinish
+    };
     // update just the userId on this part and navigate back to singleJob/view all parts
-    partData.updatePartUser(this.state).then(() => {
+    partData.updatePart(newPart).then(() => {
       this.changeRoute();
     });
   }
@@ -89,7 +122,10 @@ class SinglePartView extends React.Component {
             </Dropdown.Item>)}
           </Dropdown.Menu>
         </Dropdown>
-        <Button onClick={ this.onSubmit }>Assign</Button>
+        {this.state.userId > 0 ? <Button onClick={ this.onSubmit }>Assign</Button> : ''}
+        <div>
+          <Button onClick={this.goBack}>Back</Button>
+        </div>
       </>
     );
   }

@@ -24,6 +24,19 @@ namespace ShopManager.DataAccess
             return results;
         }
 
+        //Gets last company
+        public Company GetLast()
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"SELECT TOP 1 * 
+                        FROM Companies 
+                        ORDER BY ID DESC";
+
+            var singleCompany = db.QueryFirstOrDefault<Company>(sql);
+            return singleCompany;
+        }
+
         //Gets a single company
         public Company Get(int id)
         {
