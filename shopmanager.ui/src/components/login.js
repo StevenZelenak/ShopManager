@@ -6,22 +6,23 @@ import userData from '../helpers/data/userData';
 class Login extends React.Component {
   state = {
     userSearch: [],
-    user: [],
+    user: localStorage.getItem('user'),
     username: '',
     password: '',
   };
 
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    loginCallback: PropTypes.func.isRequired
   };
 
   // I am checking if username and password match the one in the database then setting that user data to localStorage 'user' to be called in other components
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.username === this.state.userSearch[0].username && this.state.password === this.state.userSearch[0].password) {
-      localStorage.setItem('user', JSON.stringify(this.state.userSearch[0]));
+      // localStorage.setItem('user', JSON.stringify(this.state.userSearch[0]));
       this.setState({
-        user: this.state.userSearch,
+        user: localStorage.setItem('user', JSON.stringify(this.state.userSearch[0])),
       }, this.changeRoute);
     }
   };
@@ -33,8 +34,8 @@ class Login extends React.Component {
   };
 
   changeRoute = () => {
+    this.props.loginCallback(this.state.user);
     const { history } = this.props;
-    console.warn('history', history);
     history.push('/logged-in');
   }
 
@@ -57,6 +58,12 @@ class Login extends React.Component {
 
   componentDidMount() {
     this.populateResults();
+  }
+
+  onRegister = () => {
+    const { history } = this.props;
+    console.warn('I clicked this');
+    history.push('/register_company');
   }
 
   render() {
@@ -87,7 +94,7 @@ class Login extends React.Component {
             <Button variant='primary' type='' onClick={this.handleSubmit}>
               Login
             </Button>
-            <Button variant='danger' type=''>
+            <Button variant='danger' type='' onClick={this.onRegister}>
               Register
             </Button>
           </Form>

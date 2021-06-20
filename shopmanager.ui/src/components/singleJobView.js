@@ -1,7 +1,7 @@
 import '../styles/singleJobView.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import PartTableRow from './partTableRow';
 import jobData from '../helpers/data/jobData';
 import partData from '../helpers/data/partData';
@@ -60,6 +60,11 @@ class SingleJobView extends React.Component {
     history.push(`/single_part/${id}`);
   };
 
+  goBack = () => {
+    const { history } = this.props;
+    history.push('/view_jobs');
+  }
+
   removePart = (id) => {
     partData.deletePart(id).then(() => {
       window.location.reload();
@@ -77,6 +82,9 @@ class SingleJobView extends React.Component {
             <button><Link to={`/create_part/${job.id}`} href='#'>
               Add Part +
             </Link></button>
+            <div>
+            <Button onClick={this.goBack}>Back</Button>
+            </div>
           </div>
           <div className='item'>
           <Table striped bordered hover>

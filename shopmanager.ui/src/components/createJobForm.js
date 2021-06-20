@@ -24,7 +24,7 @@ class CreateJobForm extends React.Component {
       dateFinished: null,
       budget: 0,
       isComplete: false,
-      setDateRec: new Date('2021', '0', '1'),
+      setDateRec: new Date(),
       setDateDue: new Date(),
     };
     this.dateChangeOne = this.dateChangeOne.bind(this);

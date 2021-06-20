@@ -13,8 +13,11 @@ class App extends React.Component {
     return (
       <div className='App'>
         <BrowserRouter>
-          <Navbar />
-          <Routes user={this.state.user}/>
+          <Navbar user={this.state.user} />
+          <Routes
+            user={this.state.user}
+            loginCallback={(user) => this.setState({ user })}
+          />
         </BrowserRouter>
       </div>
     );

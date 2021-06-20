@@ -50,6 +50,17 @@ namespace ShopManager.Controllers
             return Ok(part);
         }
 
+        //GET to /api/company_parts/{userId}
+        [HttpGet("company_parts_user/{userId}")]
+        public IActionResult GetAllPartsByUserId(int userId)
+        {
+            var part = _repo.GetByUserId(userId);
+            if (part == null)
+            {
+                return NotFound("These users id does not exist");
+            }
+            return Ok(part);
+        }
 
         //POST to /api/Parts
         [HttpPost]
@@ -91,15 +102,26 @@ namespace ShopManager.Controllers
         }
 
         //PUT to /api/Part/{id}/update
-        [HttpPut("{id}/update_user")]
-        public IActionResult UpdatePartUser(int id, Part partObj)
+        [HttpPut("{id}/update_wu")]
+        public IActionResult UpdatePartWUser(int id, Part partObj)
         {
             var part = _repo.Get(id);
 
-            part.userId = partObj.userId;
+            part.jobId = partObj.jobId;
+            part.partName = partObj.partName;
+            part.materialType = partObj.materialType;
+            part.MaterialFinish = partObj.MaterialFinish;
+            part.sizeLength = partObj.sizeLength;
+            part.sizeWidth = partObj.sizeWidth;
+            part.sizeHeight = partObj.sizeHeight;
+            part.price = partObj.price;
+            part.isComplete = partObj.isComplete;
+            part.dateStart = partObj.dateStart;
+            part.dateEnd = partObj.dateEnd;
 
-            _repo.UpdateUserIdPart(part);
+            _repo.UpdateWithoutUser(part);
             return NoContent();
         }
+
     }
 }

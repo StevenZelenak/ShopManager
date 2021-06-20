@@ -7,10 +7,13 @@ import LoggedInHome from '../components/loggedInHome';
 import CreateUserView from '../views/createUserView';
 import CreateJobForm from '../components/createJobForm';
 import CreatePartForm from '../components/createPartForm';
+import CreateCompany from '../components/createCompany';
+import RegisterUser from '../components/registerUser';
 // update route
 import UpdateUserView from '../views/updateUserView';
 import UpdateUserForm from '../components/updateUserForm';
 import UpdateJobForm from '../components/updateJobForm';
+import UpdatePartForm from '../components/updatePartForm';
 // singleView routes
 import SingleUserView from '../components/singleUserView';
 import SingleJobView from '../components/singleJobView';
@@ -21,7 +24,7 @@ import ManagerJobView from '../views/managerJobViews';
 
 /* eslint-disable react/prop-types */
 
-export default function Routes({ user }) {
+export default function Routes({ user, loginCallback }) {
   return (
         <Switch>
             <PrivateRoute exact component={LoggedInHome} path='/' />
@@ -34,11 +37,14 @@ export default function Routes({ user }) {
             <PrivateRoute exact component={(props) => <UpdateUserForm {...props}/>} path='/update_user/:id' />
             <PrivateRoute exact component={(props) => <SingleUserView {...props}/>} path='/single_user/:id' />
             <PrivateRoute exact component={(props) => <UpdateJobForm {...props}/>} path='/update_job/:id' />
+            <PrivateRoute exact component={(props) => <UpdatePartForm {...props}/>} path='/update_part/:id' />
             <PrivateRoute exact component={(props) => <SingleJobView {...props}/>} path='/single_job/:id' />
             <PrivateRoute exact component={(props) => <SinglePartView user={user} {...props}/>} path='/single_part/:id' />
             <PrivateRoute exact component={UpdateUserView} path='/update_user' />
-            <Route exact path="/" component={Login}/>
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={(props) => <Login loginCallback={loginCallback} {...props}/>} />
+            <Route exact path="/login" component={(props) => <Login loginCallback={loginCallback} {...props}/>} />
+            <Route exact component={(props) => <CreateCompany {...props}/>} path='/register_company' />
+            <Route exact component={(props) => <RegisterUser {...props}/>} path='/register_user' />
         </Switch>
   );
 }
