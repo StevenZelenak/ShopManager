@@ -38,6 +38,30 @@ namespace ShopManager.Controllers
             return Ok(part);
         }
 
+        //GET to /api/company_parts/{jobId}
+        [HttpGet("company_parts/{jobId}")]
+        public IActionResult GetAllPartsByJobId(int jobId)
+        {
+            var part = _repo.GetByJobId(jobId);
+            if (part == null)
+            {
+                return NotFound("These users id does not exist");
+            }
+            return Ok(part);
+        }
+
+        //GET to /api/company_parts/{userId}
+        [HttpGet("company_parts_user/{userId}")]
+        public IActionResult GetAllPartsByUserId(int userId)
+        {
+            var part = _repo.GetByUserId(userId);
+            if (part == null)
+            {
+                return NotFound("These users id does not exist");
+            }
+            return Ok(part);
+        }
+
         //POST to /api/Parts
         [HttpPost]
         public IActionResult AddAPart(Part part)
@@ -71,10 +95,33 @@ namespace ShopManager.Controllers
             part.userId = partObj.userId;
             part.isComplete = partObj.isComplete;
             part.dateStart = partObj.dateStart;
-            part.dateFinish = partObj.dateFinish;
+            part.dateEnd = partObj.dateEnd;
 
             _repo.Update(part);
             return NoContent();
         }
+
+        //PUT to /api/Part/{id}/update
+        [HttpPut("{id}/update_wu")]
+        public IActionResult UpdatePartWUser(int id, Part partObj)
+        {
+            var part = _repo.Get(id);
+
+            part.jobId = partObj.jobId;
+            part.partName = partObj.partName;
+            part.materialType = partObj.materialType;
+            part.MaterialFinish = partObj.MaterialFinish;
+            part.sizeLength = partObj.sizeLength;
+            part.sizeWidth = partObj.sizeWidth;
+            part.sizeHeight = partObj.sizeHeight;
+            part.price = partObj.price;
+            part.isComplete = partObj.isComplete;
+            part.dateStart = partObj.dateStart;
+            part.dateEnd = partObj.dateEnd;
+
+            _repo.UpdateWithoutUser(part);
+            return NoContent();
+        }
+
     }
 }

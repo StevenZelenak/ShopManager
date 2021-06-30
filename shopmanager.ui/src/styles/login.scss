@@ -1,0 +1,48 @@
+.parent-div-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+}
+
+.form-parent {
+  background-color: rgb(248, 252, 252);
+  padding: 25px;
+  border-radius: 5px;
+  border: rgb(110, 198, 252) solid 4px;
+  height: 45vh;
+}
+
+.sign-in {
+  color: rgb(110, 198, 252);
+  padding-right: 68%;
+  padding-bottom: 5%;
+}
+
+.form-boxes {
+  border-radius: 0px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: solid;
+  border-color: rgb(110, 198, 252);
+  border-width: 2px;
+  background-color: rgb(248, 252, 252);
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
+
+.form-button {
+  color: rgb(248, 252, 252);
+  border-radius: 0px;
+  border: rgb(110, 198, 252) solid 2px;
+  background-color: rgb(110, 198, 252);
+  padding-left: 15%;
+  padding-right: 15%;
+  margin: 8%;
+  margin-bottom: 15%;
+}
+
+.form-sign-up {
+  font-size: 14px;
+}

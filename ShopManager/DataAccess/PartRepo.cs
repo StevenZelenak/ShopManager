@@ -38,14 +38,44 @@ namespace ShopManager.DataAccess
             return singlePart;
         }
 
+        //Gets Parts by jobId
+        public List<Part> GetByJobId(int jobId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"SELECT *
+                        FROM [Parts]
+                        WHERE jobId = @jobId";
+
+
+            var results = db.Query<Part>(sql, new { jobId = jobId }).ToList();
+
+            return results;
+        }
+
+        //Gets Parts by userId
+        public List<Part> GetByUserId(int userId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"SELECT *
+                        FROM [Parts]
+                        WHERE userId = @userId";
+
+
+            var results = db.Query<Part>(sql, new { userId = userId }).ToList();
+
+            return results;
+        }
+
         //Adds a part
         public void Add(Part part)
         {
             Console.WriteLine(part);
 
-            var sql = @"INSERT INTO [dbo].[Parts] ([jobId], [partName], [materialType], [materialFinish], [sizeLength], [sizeWidth], [sizeHeight], [price], [userId], [isComplete], [dateStart], [dateFinish])
+            var sql = @"INSERT INTO [dbo].[Parts] ([jobId], [partName], [materialType], [MaterialFinish], [sizeLength], [sizeWidth], [sizeHeight], [price], [isComplete], [dateStart], [dateEnd])
             OUTPUT inserted.id
-            VALUES(@jobId, @partName, materialType, @materialFinish, @sizeLength, @sizeWidth, @sizeHeight, @price, @userId, @isComplete, @dateStart, @dateFinish)";
+            VALUES(@jobId, @partName, @materialType, @MaterialFinish, @sizeLength, @sizeWidth, @sizeHeight, @price, @isComplete, @dateStart, @dateEnd)";
 
             using var db = new SqlConnection(ConnectionString);
 
@@ -84,7 +114,28 @@ namespace ShopManager.DataAccess
                             userId = @userId,
                             isComplete = @isComplete,
                             dateStart = @dateStart,
-                            dateFinish = @dateFinish
+                            dateEnd = @dateEnd
+                        WHERE id = @id";
+
+            db.Execute(sql, part);
+        }
+
+        public void UpdateWithoutUser(Part part)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"UPDATE [Parts]
+                        SET jobId = @jobId,
+                            partName = @partName,
+	                        materialType = @materialType,
+	                        materialFinish = @materialFinish,
+	                        sizeLength = @sizeLength,
+                            sizeWidth = @sizeWidth,
+	                        sizeHeight = @sizeHeight,
+                            price = @price,
+                            isComplete = @isComplete,
+                            dateStart = @dateStart,
+                            dateEnd = @dateEnd
                         WHERE id = @id";
 
             db.Execute(sql, part);

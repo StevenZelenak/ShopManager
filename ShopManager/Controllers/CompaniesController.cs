@@ -26,6 +26,13 @@ namespace ShopManager.Controllers
             return Ok(_repo.GetAll());
         }
 
+        //Get to api/Companies
+        [HttpGet("get_latest_company")]
+        public IActionResult GetLastCompany()
+        {
+            return Ok(_repo.GetLast());
+        }
+
         //GET to /api/Companies/{id}
         [HttpGet("{id}")]
         public IActionResult GetById(int id)

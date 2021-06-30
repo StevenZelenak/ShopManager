@@ -13,15 +13,12 @@ class CreateUserView extends React.Component {
     const { history } = this.props;
     console.warn('history', history);
     history.push('/logged-in');
-  }
+  };
 
   render() {
     return (
       <>
-        <div>
-          <h1>Create User View</h1>
-          <CreateUserForm user={this.state.user} changeRoute={this.changeRoute} />
-        </div>
+        <CreateUserForm user={this.state.user} changeRoute={this.changeRoute} />
       </>
     );
   }

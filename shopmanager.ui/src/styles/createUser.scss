@@ -1,40 +1,50 @@
-.single-user-parent-div {
+.user-parent-div {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 75vh;
+  height: 85vh;
 }
 
-.single-user-form-parent {
+.user-form-parent {
   background-color: rgb(248, 252, 252);
   padding: 30px;
   border-radius: 5px;
   border: rgb(110, 198, 252) solid 4px;
-  height: 60vh;
-  width: 35%;
+  height: 70vh;
+  width: 28%;
 }
 
-.single-user-sign-in {
+.user-sign-in {
   color: rgb(110, 198, 252);
-  padding-right: 2%;
-  padding-bottom: 2%;
+  padding-right: 68%;
+  padding-bottom: 5%;
   text-decoration: underline;
 }
 
-.single-user-labels {
-  padding-right: 15%;
-}
-
-.single-user-form-boxes {
+.user-form-boxes {
   border-radius: 0px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
   border-bottom-style: solid;
   border-color: rgb(110, 198, 252);
   border-width: 2px;
   background-color: rgb(248, 252, 252);
+  margin-bottom: 2.5%;
+  margin-top: 2.5%;
 }
 
+.user-form-button {
+  color: rgb(248, 252, 252);
+  border-radius: 2px;
+  border: rgb(110, 198, 252) solid 2px;
+  background-color: rgb(110, 198, 252);
+  padding-left: 8%;
+  padding-right: 8%;
+  margin: 3px;
+}
 
-.single-user-form-cancel-button {
+.user-form-cancel-button {
   color: rgb(248, 252, 252);
   border-radius: 2px;
   border: rgb(252, 110, 134) solid 2px;
@@ -44,7 +54,7 @@
   margin: 3px;
 }
 
-.single-user-form-cancel-button:hover {
+.user-form-cancel-button:hover {
   color: rgb(248, 252, 252);
   border-radius: 2px;
   border: rgb(243, 40, 74) solid 2px;
@@ -53,4 +63,3 @@
   padding-right: 8%;
   margin: 3px;
 }
-

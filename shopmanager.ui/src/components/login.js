@@ -1,6 +1,8 @@
+import '../styles/login.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import userData from '../helpers/data/userData';
 
 class Login extends React.Component {
@@ -62,28 +64,28 @@ class Login extends React.Component {
 
   onRegister = () => {
     const { history } = this.props;
-    console.warn('I clicked this');
     history.push('/register_company');
   }
 
   render() {
     return (
       <>
-        <div className='col-lg-6 offset-lg-3'>
-          <Form className=''>
+        <div className='parent-div-login'>
+          <Form className='form-parent'>
+          <h5 className='sign-in'>Sign In</h5>
             <Form.Group>
-              <Form.Label>Username: </Form.Label>
               <Form.Control
+                className='form-boxes'
                 type='text'
                 name='username'
                 value={this.state.username}
                 onChange={this.handleChange}
-                placeholder='Enter username'
+                placeholder='Username'
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Password: </Form.Label>
               <Form.Control
+                className='form-boxes'
                 type='password'
                 name='password'
                 value={this.state.password}
@@ -91,12 +93,16 @@ class Login extends React.Component {
                 placeholder='Password'
               />
             </Form.Group>
-            <Button variant='primary' type='' onClick={this.handleSubmit}>
+            <div>
+            <Button className='form-button' onClick={this.handleSubmit}>
               Login
             </Button>
-            <Button variant='danger' type='' onClick={this.onRegister}>
-              Register
-            </Button>
+            </div>
+            <div>
+            <Link to='/register_company' className='form-sign-up' href='#'>
+              Not a user? Sign up
+            </Link>
+            </div>
           </Form>
         </div>
       </>

@@ -1,7 +1,6 @@
 import '../styles/singleUserView.scss';
 import React from 'react';
-import { Table, Button } from 'react-bootstrap';
-import PartTableRowUser from './partTabelRowUser';
+import { Button } from 'react-bootstrap';
 import userData from '../helpers/data/userData';
 import partData from '../helpers/data/partData';
 
@@ -60,13 +59,13 @@ class SingleUserView extends React.Component {
   }
 
   render() {
-    const { user, parts } = this.state;
-    const renderAllPartRows = () => parts.map((part) => <PartTableRowUser id={part.id} key={part.id} part={part} />);
+    const { user } = this.state;
+    // const renderAllPartRows = () => parts.map((part) => <PartTableRowUser id={part.id} key={part.id} part={part} />);
     return (
       <>
-        <div className='container'>
-          <div className='item'>
-            <h2>Employee Info</h2>
+        <div className='single-user-parent-div'>
+          <div className='single-user-form-parent'>
+            <h2 className='single-user-sign-in'>Employee Info</h2>
             <h3>
               Employee Name: {user.firstName} {user.lastName}
             </h3>
@@ -75,10 +74,10 @@ class SingleUserView extends React.Component {
               Employee Status:{' '}
               {user.isManager ? <p>Manager</p> : <p>Employee</p>}
             </h3>
-            <div>
-          <Button onClick={this.goBack}>Back</Button>
+            <Button className='single-user-form-cancel-button' onClick={this.goBack}>Back</Button>
+            </div>
         </div>
-          </div>
+          {/* </div>
           { user.isManager ? <p></p>
             : <div className='item'>
             <h2>Assigned Task</h2>
@@ -91,8 +90,8 @@ class SingleUserView extends React.Component {
             </thead>
             <tbody>{renderAllPartRows()}</tbody>
           </Table>
-          </div> }
-        </div>
+          </div> } */}
+        {/* </div> */}
       </>
     );
   }

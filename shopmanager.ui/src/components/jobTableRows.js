@@ -1,3 +1,4 @@
+import '../styles/viewUser.scss';
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
@@ -14,13 +15,13 @@ export default function JobTableRow({
       <td>{job.jobName}</td>
       <td>{job.customer}</td>
       <td>
-        <Button onClick={() => changeRouteUpdate(job.id)}>Update</Button>
+        <Button className='table-update-button' onClick={() => changeRouteUpdate(job.id)}>Update</Button>
       </td>
       <td>
-        <Button variant='info' onClick={() => changeRouteSingleView(job.id)}>View</Button>
+        <Button className='table-view-button' onClick={() => changeRouteSingleView(job.id)}>View</Button>
       </td>
       <td>
-        <Button variant='danger' onClick={() => removeJob(job.id)}>Delete</Button>
+        <Button className='table-delete-button' onClick={() => removeJob(job.id)}>Delete</Button>
       </td>
     </tr>
   );
