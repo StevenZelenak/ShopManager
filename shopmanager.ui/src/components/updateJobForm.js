@@ -192,48 +192,55 @@ class UpdateJobForm extends React.Component {
   };
 
   handleCancel = () => {
-    this.changeRoute();
+    const { history } = this.props;
+    history.push('/view_jobs');
   };
 
   render() {
     return (
       <>
-      <h1>Updated Job Form</h1>
-      <Form>
+      <div className='job-parent-div'>
+      <Form className='job-form-parent'>
+      <h5 className='job-sign-in'>Update Job</h5>
         <Form.Group as={Row} controlId='formHorizontalEmail'>
-          <Form.Label column sm={2}>
-            Job Name:
+          <Form.Label column sm="3">
+            Job name:
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={8}>
             <Form.Control
+              className='job-form-boxes'
               type='text'
               name='jobName'
               value={this.state.jobName}
               onChange={this.handleChange}
+              placeholder='Job Name'
               required
             />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId='formHorizontalEmail'>
-          <Form.Label column sm={2}>
+        <Form.Label column sm="3">
             Customer:
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={8}>
             <Form.Control
+              className='job-form-boxes'
               type='text'
               name='customer'
               value={this.state.customer}
               onChange={this.handleChange}
+              placeholder='Customer'
               required
             />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId='formHorizontalEmail'>
-          <Form.Label column sm={2}>
+        <Form.Label column sm="3">
             Budget:
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={8}>
             <Form.Control
+              className='job-form-boxes'
               type='number'
               name='budget'
               value={this.state.budget}
@@ -243,10 +250,10 @@ class UpdateJobForm extends React.Component {
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId='formHorizontalEmail'>
-          <Form.Label column sm={2}>
+          <Form.Label column sm={4}>
             Date Received:
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={6}>
             <DatePicker
               selected={this.state.setDateRec}
               onChange={this.dateChangeOne}
@@ -256,10 +263,10 @@ class UpdateJobForm extends React.Component {
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId='formHorizontalEmail'>
-          <Form.Label column sm={2}>
+          <Form.Label column sm={4}>
             Date Due:
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={6}>
             <DatePicker
               selected={this.state.setDateDue}
               onChange={this.dateChangeTwo}
@@ -269,11 +276,11 @@ class UpdateJobForm extends React.Component {
           </Col>
         </Form.Group>
         { this.state.isComplete
-          ? <Form.Group as={Row} controlId='formHorizontalEmail'>
-          <Form.Label column sm={2}>
+          ? <Form.Group as={Row}>
+          <Form.Label column sm={4}>
             Date Finished:
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={6}>
             <DatePicker
               selected={this.state.setFinishDate}
               onChange={this.dateChangeThree}
@@ -291,15 +298,16 @@ class UpdateJobForm extends React.Component {
 
         <Form.Group as={Row}>
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button type='' onClick={this.onFormSubmit}>
+            <Button className='job-form-button' onClick={this.onFormSubmit}>
               Submit
             </Button>
-            <Button variant='danger' type='' onClick={this.handleCancel}>
+            <Button className='job-form-cancel-button' onClick={this.handleCancel}>
               Cancel
             </Button>
           </Col>
         </Form.Group>
       </Form>
+      </div>
       </>
     );
   }

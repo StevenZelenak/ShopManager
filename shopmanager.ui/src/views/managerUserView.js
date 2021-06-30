@@ -1,3 +1,4 @@
+import '../styles/viewUser.scss';
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import userData from '../helpers/data/userData';
@@ -51,9 +52,7 @@ class ManagerUserView extends React.Component {
     const renderAllUserRows = () => companyUsers.map((user) => <UserTableRow id={user.id} key={user.id} user={user} removeUser={this.removeUser} changeRouteUpdate={this.changeRouteUpdate} changeRouteSingleView={this.changeRouteSingleView}/>);
     return (
       <>
-        <div>
-          <h1>Manager User View</h1>
-          <Table striped bordered hover>
+          <Table responsive>
             <thead>
               <tr>
                 <th>First Name</th>
@@ -65,7 +64,6 @@ class ManagerUserView extends React.Component {
             </thead>
             <tbody>{renderAllUserRows()}</tbody>
           </Table>
-        </div>
       </>
     );
   }

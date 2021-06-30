@@ -38,6 +38,18 @@ namespace ShopManager.Controllers
             return Ok(user);
         }
 
+        //GET to /api/Users/{companyId}
+        [HttpGet("company_user/{companyId}")]
+        public IActionResult GetAllUsersByCompanyId(int companyId)
+        {
+            var user = _repo.GetByCompanyId(companyId);
+            if (user == null)
+            {
+                return NotFound("These users id does not exist");
+            }
+            return Ok(user);
+        }
+
         //POST to /api/Users
         [HttpPost]
         public IActionResult AddAUser(User user)

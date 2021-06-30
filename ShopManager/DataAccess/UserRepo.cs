@@ -39,12 +39,27 @@ namespace ShopManager.DataAccess
             return singleUser;
         }
 
+        //Gets users by companyId
+        public List<User> GetByCompanyId(int companyId)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"SELECT *
+                        FROM [Users]
+                        WHERE companyId = @companyId";
+
+            
+            var results = db.Query<User>(sql, new { companyId = companyId }).ToList();
+
+            return results;
+        }
+
         //Adds a user
         public void Add(User user)
         {
             var sql = @"INSERT INTO [dbo].[Users] ([companyId], [isManager], [isEmployee], [firstName], [lastName], [companyEmail], [username], [password])
             OUTPUT inserted.id
-            VALUES(@companyId, @isManager, isEmployee, @firstName, @lastName, @companyEmail, @username, @password)";
+            VALUES(@companyId, @isManager, @isEmployee, @firstName, @lastName, @companyEmail, @username, @password)";
 
             using var db = new SqlConnection(ConnectionString);
 
@@ -58,9 +73,16 @@ namespace ShopManager.DataAccess
         {
             using var db = new SqlConnection(ConnectionString);
 
-            var sql = @"DELETE
+            var sql = @"UPDATE [Parts]
+                        SET userId = NULL
+                        WHERE userId = @id
+                        DELETE
+                        FROM [Tools]
+                        WHERE userId = @id
+                        DELETE
                         FROM [Users]
-                        WHERE id = @id";
+                        WHERE id = @id
+                        ";
 
             db.Execute(sql, new { id });
         }

@@ -1,0 +1,50 @@
+.manager-parent-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+.Grid {
+  background-color: rgb(248, 252, 252);
+  width: 60%;
+  border-radius: 5px;
+  border: rgb(110, 198, 252) solid 4px;
+  height: 60vh;
+  padding: 2px;
+  display: flex;
+  flex-wrap: wrap;
+
+  &-item {
+    color: rgb(248, 252, 252);
+    border-radius: 15px;
+    border: rgb(110, 198, 252) solid 2px;
+    background-color: rgb(110, 198, 252);
+    width: 90%;
+    margin: 1px;
+    font-size: 30px;
+
+    @media (min-width: 48rem) {
+      width: 49%;
+      &:nth-child(odd) {
+        border: rgb(119, 127, 129) solid 2px;
+        background: rgb(119, 127, 129);
+        margin-right: 1%;
+      }
+    }
+
+    @media (min-width: 48rem) {
+      width: 49%;
+      &:nth-child(odd):hover {
+        border: rgb(71, 78, 80) solid 2px;
+        background: rgb(71, 78, 80);
+        margin-right: 1%;
+      }
+    }
+
+    &:before {
+      float: center;
+      padding-top: 100%;
+    }
+  }
+}

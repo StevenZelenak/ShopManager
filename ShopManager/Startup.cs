@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ShopManager.DataAccess;
 
 namespace ShopManager
 {
@@ -26,6 +27,7 @@ namespace ShopManager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +36,7 @@ namespace ShopManager
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             }
 
             app.UseHttpsRedirection();

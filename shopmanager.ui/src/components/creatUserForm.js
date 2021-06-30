@@ -1,3 +1,4 @@
+import '../styles/createUser.scss';
 import React from 'react';
 import {
   Form,
@@ -78,91 +79,86 @@ class CreateUserForm extends React.Component {
   render() {
     return (
       <>
-        <Form>
-        <Form.Group as={Row} controlId="formHorizontalEmail">
-    <Form.Label column sm={2}>
-      First Name:
-    </Form.Label>
+      <div className='user-parent-div'>
+        <Form className='user-form-parent'>
+        <h5 className='user-sign-in'>Create User</h5>
+        <Form.Row>
+        <Form.Group as={Col}>
     <Col sm={10}>
       <Form.Control
+      className='user-form-boxes'
       type="text"
       name="firstName"
       value={this.state.firstName}
       onChange={this.handleChange}
+      placeholder='First Name'
       required/>
     </Col>
   </Form.Group>
-  <Form.Group as={Row} controlId="formHorizontalEmail">
-    <Form.Label column sm={2}>
-      Last Name:
-    </Form.Label>
+  <Form.Group as={Col} >
     <Col sm={10}>
     <Form.Control
+      className='user-form-boxes'
       type="text"
       name="lastName"
       value={this.state.lastName}
       onChange={this.handleChange}
+      placeholder='Last Name'
       required/>
     </Col>
   </Form.Group>
-  <Form.Group as={Row} controlId="formHorizontalEmail">
-    <Form.Label column sm={2}>
-      Username:
-    </Form.Label>
+  </Form.Row>
+  <Form.Group >
     <Col sm={10}>
     <Form.Control
+      className='user-form-boxes'
       type="text"
       name="username"
       value={this.state.username}
       onChange={this.handleChange}
+      placeholder='Username'
       required/>
     </Col>
   </Form.Group>
-  <Form.Group as={Row} controlId="formHorizontalPassword">
-    <Form.Label column sm={2}>
-      Password:
-    </Form.Label>
+  <Form.Group >
     <Col sm={10}>
     <Form.Control
+      className='user-form-boxes'
       type="password"
       name="password"
       value={this.state.password}
       onChange={this.handleChange}
+      placeholder='Password'
       required/>
     </Col>
   </Form.Group>
-  <Form.Group as={Row} controlId="formHorizontalPassword">
-    <Form.Label column sm={2}>
-      Confirm Password:
-    </Form.Label>
+  <Form.Group >
     <Col sm={10}>
     <Form.Control
+      className='user-form-boxes'
       type="password"
       name="confirmPassword"
       value={this.state.confirmPassword}
       onChange={this.handleChange}
+      placeholder='Confirm Password'
       required/>
     </Col>
   </Form.Group>
-  <Form.Group as={Row} controlId="formHorizontalEmail">
-    <Form.Label column sm={2}>
-      Email Address:
-    </Form.Label>
+  <Form.Group >
     <Col sm={10}>
     <Form.Control
+      className='user-form-boxes'
       type="text"
       name="companyEmail"
       value={this.state.companyEmail}
       onChange={this.handleChange}
+      placeholder='Email'
       required/>
     </Col>
   </Form.Group>
   <fieldset>
     <Form.Group as={Row}>
-      <Form.Label as="legend" column sm={2}>
-        Employment Status:
-      </Form.Label>
-      <Col sm={10}>
+      <Col sm={11}>
         <Form.Check
           type="radio"
           label="Manager"
@@ -184,12 +180,13 @@ class CreateUserForm extends React.Component {
   </fieldset>
 
   <Form.Group as={Row}>
-    <Col sm={{ span: 10, offset: 2 }}>
-      <Button type="" onClick={this.handleSubmit}>Submit</Button>
-      <Button variant='danger' type="" onClick={this.handleCancel}>Cancel</Button>
+    <Col>
+      <Button className='user-form-button' onClick={this.handleSubmit}>Submit</Button>
+      <Button className='user-form-cancel-button' onClick={this.handleCancel}>Cancel</Button>
     </Col>
   </Form.Group>
 </Form>
+</div>
       </>
     );
   }

@@ -52,7 +52,6 @@ class ManagerJobView extends React.Component {
     return (
       <>
         <div>
-          <h1>Manager Job View</h1>
           <Table striped bordered hover>
             <thead>
               <tr>

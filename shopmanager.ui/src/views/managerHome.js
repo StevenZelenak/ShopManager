@@ -1,7 +1,9 @@
+import '../styles/managerHome.scss';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
-// pass user as parameter when user auth is setup
+/* eslint-disable react/prop-types */
+
 class ManagerHome extends React.Component {
   state = {
     user: null,
@@ -16,28 +18,13 @@ class ManagerHome extends React.Component {
   render() {
     return (
       <>
-        <div>
-          <h1>Manager Home</h1>
-            <button>
-            <Link to='/create_user' href='#'>
-              Create User
-            </Link>
-            </button>
-            <button>
-            <Link to='/create_job' href='#'>
-              Create Job
-            </Link>
-            </button>
-            <button>
-            <Link to='/view_user' href='#'>
-              View Users
-            </Link>
-            </button>
-            <button>
-            <Link to='/view_jobs' href='#'>
-              View Jobs
-            </Link>
-            </button>
+        <div className='manager-parent-div'>
+          <div className='Grid'>
+          <Button className='Grid-item' onClick={() => this.props.changeRoute('create_user')}>Create User</Button>
+          <Button className='Grid-item' onClick={() => this.props.changeRoute('create_job')}>Create Job</Button>
+          <Button className='Grid-item' onClick={() => this.props.changeRoute('view_user')}>View Users</Button>
+          <Button className='Grid-item' onClick={() => this.props.changeRoute('view_jobs')}>View Jobs</Button>
+          </div>
         </div>
       </>
     );
